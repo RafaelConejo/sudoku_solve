@@ -3,8 +3,19 @@
     Por Rafael Vázquez Conejo
 """
 
-Se baaaa
+import pprint
 
+tablero = [
+        [5, 3, 0, 0, 7, 0, 0, 0, 0],
+        [6, 0, 0, 1, 9, 5, 0, 0, 0],
+        [0, 9, 8, 0, 0, 0, 0, 6, 0],
+        [8, 0, 0, 0, 6, 0, 0, 0, 3],
+        [4, 0, 0, 8, 0, 3, 0, 0, 1],
+        [7, 0, 0, 0, 2, 0, 0, 0, 6],
+        [0, 6, 0, 0, 0, 0, 2, 8, 0],
+        [0, 0, 0, 4, 1, 9, 0, 0, 5],
+        [0, 0, 0, 0, 8, 0, 0, 7, 9]
+    ]
 
 """
     Función para encontrar casilla vacía
@@ -18,7 +29,6 @@ def encontrar_vacio(tablero):
                 return (i, j)
 
     return None
-
 
 
 
@@ -43,11 +53,11 @@ def valor_valido(tablero, posicion, valor):
             salida = False
 
     #Compruebo la caja a la que pertenece
-    caja_x = posicion[1]//3
-    caja_y = posicion[0]//3
+    caja_x = posicion[1] // 3              # // me permite hacer una división sin decimales 
+    caja_y = posicion[0] // 3
 
-    for i in range(caja_y*3, caja_y*3 + 3):
-        for j in range(caja_x*3, caja_x*3 + 3):
+    for i in range(caja_y * 3, caja_y * 3 + 3):
+        for j in range(caja_x * 3, caja_x * 3 + 3):
             if(tablero[i][j] == valor and (i, j) != posicion):
                 salida = False
 
@@ -60,10 +70,10 @@ def valor_valido(tablero, posicion, valor):
     :return: solucion
 """
 def resolver(tablero):
-    encontrar = encontrar_vacio(tablero)
+    hay_hueco = encontrar_vacio(tablero)
 
-    if(find):
-        fil, col = find
+    if(hay_hueco):
+        fil, col = hay_hueco
     else:
         return True
 
@@ -77,3 +87,9 @@ def resolver(tablero):
             tablero[fil][col] = 0
 
     return False
+
+
+#Ejecuto el código
+ejemplo = pprint.PrettyPrinter(width=40, compact=True)
+resolver(tablero)
+ejemplo.pprint(tablero)
